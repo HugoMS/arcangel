@@ -11,6 +11,9 @@
 |
 */
 Route::get('/', 'LoginController@getIndex');
+Route::post('/', 'LoginController@postIndex');
+Route::controller('login', 'LoginController');
+
 /*
 |--------------------------------------------------------------------------
 | Application Routes

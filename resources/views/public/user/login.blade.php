@@ -8,13 +8,13 @@
                 <a href="/"><img src="{{ asset('assets/img/logo_Arcangel.png') }}" alt=""></a>
             </div><!-- /.login-logo -->
             <p class="login-box-msg">Iniciar Sesión</p>
-            <form action="../../index2.html" method="post">
+            {!! Form::open(array('action' => 'LoginController@postIndex')) !!}
                 <div class="form-group has-feedback">
-                    <input type="email" class="form-control" placeholder="Email">
+                    <input type="email" class="form-control" name="email" placeholder="Email">
                     <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
                 </div>
                 <div class="form-group has-feedback">
-                    <input type="password" class="form-control" placeholder="Password">
+                    <input type="password" name="pass" class="form-control" placeholder="Password">
                     <span class="glyphicon glyphicon-lock form-control-feedback"></span>
                 </div>
                 <div class="row">
@@ -22,7 +22,7 @@
                         <button type="submit" class="btn btn-primary btn-block btn-flat">Iniciar Sesión</button>
                     </div><!-- /.col -->
                 </div>
-            </form>
+            {!! Form::close() !!}
 
             <div class="social-auth-links text-center">
                 <p>- OR -</p>
@@ -40,14 +40,3 @@
  <!-- /.login-box -->
 @stop
 
-@section('scripts')
-<script>
-    $(function () {
-        $('input').iCheck({
-            checkboxClass: 'icheckbox_square-blue',
-            radioClass: 'iradio_square-blue',
-            increaseArea: '20%' // optional
-        });
-    });
-</script>
-@stop
