@@ -25,6 +25,8 @@ Route::controller('login', 'LoginController');
 |
 */
 
-Route::group(['middleware' => ['web']], function () {
+Route::group(['middleware' => ['SessionCliente']], function () {
     //
+    Route::get('logout', 'LoginController@getLogout');
+    Route::get('home', 'HomeController@getIndex');
 });
