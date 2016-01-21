@@ -43,7 +43,7 @@ class LoginController extends Controller
             \Session::put('clienteId', $cliente[0]->id);
             \Session::put('clienteName', $cliente[0]->name);
             \Session::put('clienteEmial', $cliente[0]->email);
-
+           //dd( \Session::has('cliente_token'));
            return redirect('home');
         }
         // return view('public.admin', array());
