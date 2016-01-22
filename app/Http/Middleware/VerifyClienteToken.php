@@ -15,8 +15,9 @@ class VerifyClienteToken
      */
     public function handle($request, Closure $next)
     {
+
         if (!\Session::has('cliente_token')) {
-            return redirect('login');
+            return redirect('/');
         }
         return $next($request);
     }

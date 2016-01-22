@@ -8,7 +8,8 @@
                 <a href="/"><img src="{{ asset('assets/img/logo_Arcangel.png') }}" alt=""></a>
             </div><!-- /.login-logo -->
             <p class="login-box-msg">Iniciar Sesión</p>
-            {!! Form::open(array('action' => 'LoginController@postIndex')) !!}
+            <form method="POST">
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <div class="form-group has-feedback">
                     <input type="email" class="form-control" name="email" placeholder="Email">
                     <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
@@ -22,7 +23,7 @@
                         <button type="submit" class="btn btn-primary btn-block btn-flat">Iniciar Sesión</button>
                     </div><!-- /.col -->
                 </div>
-            {!! Form::close() !!}
+            </form>
 
             <div class="social-auth-links text-center">
                 <p>- OR -</p>

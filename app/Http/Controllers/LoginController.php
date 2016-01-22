@@ -16,7 +16,10 @@ use App\Http\Controllers\Controller;
 
 class LoginController extends Controller
 {
-
+    public function __construct()
+    {
+        $this->middleware('SessionCliente', ['except' => ['getIndex', 'postIndex']]);
+    }
 
     public function getIndex()
     {
@@ -43,8 +46,8 @@ class LoginController extends Controller
             \Session::put('clienteId', $cliente[0]->id);
             \Session::put('clienteName', $cliente[0]->name);
             \Session::put('clienteEmial', $cliente[0]->email);
-           //dd( \Session::has('cliente_token'));
-           return redirect('home');
+          // dd( \Session::all());
+            return redirect('home');
         }
         // return view('public.admin', array());
     }
@@ -56,7 +59,7 @@ class LoginController extends Controller
         \Session::forget('clienteName');
         \Session::forget('clienteEmial');
 
-        return redirect('login');
+        return redirect('/');
     }
 
 }

@@ -12,7 +12,7 @@
             <div class="pull-left info">
                 <p>{{   session('clienteName') }}</p>
                 <!-- Status -->
-                <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                {{--<a href="#"><i class="fa fa-circle text-success"></i> Online</a>--}}
             </div>
         </div>
 
@@ -31,15 +31,18 @@
         <ul class="sidebar-menu">
             <li class="header">HEADER</li>
             <!-- Optionally, you can add icons to the links -->
-            <li class="active"><a href="#"><span>Link</span></a></li>
-            <li><a href="#"><span>Another Link</span></a></li>
-            <li class="treeview">
-                <a href="#"><span>Multilevel</span> <i class="fa fa-angle-left pull-right"></i></a>
+            @if (session('cliente_token'))
+            <li class="active"><a href="#"><span>Noticias</span></a></li>
+            <li><a href="#"><span>Mis Viajes</span><i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
-                    <li><a href="#">Link in level 2</a></li>
-                    <li><a href="#">Link in level 2</a></li>
-                </ul>
+                    <li><a href="#">Activos</a></li>
+                    <li><a href="#">Pasados</a></li>
+                </ul></li>
+            <li class="treeview">
+                <a href="#"><span>Viajes Arcangel</span> </a>
+
             </li>
+             @endif
         </ul><!-- /.sidebar-menu -->
     </section>
     <!-- /.sidebar -->

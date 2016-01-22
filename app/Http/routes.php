@@ -12,7 +12,7 @@
 */
 Route::get('/', 'LoginController@getIndex');
 Route::post('/', 'LoginController@postIndex');
-Route::controller('login', 'LoginController');
+//Route::controller('login', 'LoginController');
 
 /*
 |--------------------------------------------------------------------------
@@ -25,8 +25,12 @@ Route::controller('login', 'LoginController');
 |
 */
 
-Route::group(array('middleware' => 'SessionCliente'), function () {
+Route::group(['middleware' => ['web']], function () {
     //
-    Route::get('logout', 'LoginController@getLogout');
-    Route::get('home', 'HomeController@getIndex');
+    Route::get('/', 'LoginController@getIndex');
+    Route::post('/', 'LoginController@postIndex');
+    Route::group(['middleware' => ['SessionCliente']], function () {
+        Route::get('logout', 'LoginController@getLogout');
+        Route::get('home', 'HomeController@getIndex');
+    });
 });
