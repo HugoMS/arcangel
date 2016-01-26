@@ -4,3 +4,22 @@
     background-size: cover;
 
 }
+
+.cover-viaje {
+    background-image: url("../img/yuruani.JPG ");
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position-y: 65%;
+
+}
+
+.travel-a{
+    text-decoration: none;
+    color: black;
+}
+.travel{
+    border: 1px solid transparent;
+}
+.travel:hover{
+    border: 1px solid #0c0c0c;
+}

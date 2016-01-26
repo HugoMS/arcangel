@@ -32,12 +32,8 @@
             <li class="header">HEADER</li>
             <!-- Optionally, you can add icons to the links -->
             @if (session('cliente_token'))
-            <li class="active"><a href="#"><span>Noticias</span></a></li>
-            <li><a href="#"><span>Mis Viajes</span><i class="fa fa-angle-left pull-right"></i></a>
-                <ul class="treeview-menu">
-                    <li><a href="#">Activos</a></li>
-                    <li><a href="#">Pasados</a></li>
-                </ul></li>
+            <li class="active"><a href="{{ URL::to('home') }}"><span>Noticias</span></a></li>
+            <li><a href="{{ URL::to('travels') }}"><span>Mis Viajes</span></a></li>
             <li class="treeview">
                 <a href="#"><span>Viajes Arcangel</span> </a>
 

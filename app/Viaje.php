@@ -4,11 +4,13 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Cliente extends Model
+class Viaje extends Model
 {
-
-    protected $table  = 'cliente';
+    //
+    protected $table = 'viaje';
     public $timestamp = false;
+
+
 
 
 }

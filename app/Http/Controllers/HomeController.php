@@ -41,6 +41,6 @@ class HomeController extends Controller
             ]
         ];
 
-        return  view('public.test')->with($data);
+        return  view('public.cliente.home')->with($data);
     }
 }

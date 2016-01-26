@@ -32,5 +32,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::group(['middleware' => ['SessionCliente']], function () {
         Route::get('logout', 'LoginController@getLogout');
         Route::get('home', 'HomeController@getIndex');
+        Route::get('travels', 'TravelController@getIndex');
+        Route::get('travels/{code}', 'TravelController@getTravel');
     });
 });
