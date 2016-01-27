@@ -6,10 +6,9 @@
         @foreach( $viajes as $viaje)
 
         <div class="col-md-4">
-
+    <a class="travel-a" href="{{ URL::to('travels/'.$viaje->cod) }}">
             <!-- Widget: user widget style 1 -->
-            <input type="hidden" name="travel_id" id="travel_cod" value="{{$viaje->cod}}">
-            <div class="box box-widget widget-user travel travel-a">
+            <div class="box box-widget widget-user travel ">
                 <!-- Add the bg color to the header using any of the bg-* classes -->
                 <div class="widget-user-header bg-black cover-viaje">
                 </div>
@@ -34,6 +33,7 @@
                     <!-- /.row -->
                 </div>
             </div>
+    </a>
 
             <!-- /.widget-user -->
         </div>

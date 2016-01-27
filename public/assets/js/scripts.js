@@ -6,7 +6,7 @@ $(".travel-a").on('click', function () {
         url: BASE_URL + '/travels/'+code,
         method: "GET",
         beforeSend: function () {
-            //$('body').addClass('loading');
+
         },
         success: function (res) {
 
