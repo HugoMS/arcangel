@@ -12,6 +12,8 @@ namespace App\Http\Controllers;
 use App\Cliente;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Socialite;
+
 
 
 class LoginController extends Controller
