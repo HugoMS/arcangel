@@ -108,14 +108,14 @@
                     <!-- Menu Toggle Button -->
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <!-- The user image in the navbar-->
-                        <img src="{{ asset("AdminLTE/dist/img/user2-160x160.jpg") }}" class="user-image" alt="User Image"/>
+                        <img src="{{ session('clienteAvatar')!= '' ?  session("clienteAvatar") :  asset("AdminLTE/dist/img/user2-160x160.jpg") }}" class="user-image" alt="User Image"/>
                         <!-- hidden-xs hides the username on small devices so only the image appears. -->
                         <span class="hidden-xs">{{session('clienteName')}}</span>
                     </a>
                     <ul class="dropdown-menu">
                         <!-- The user image in the menu -->
                         <li class="user-header">
-                            <img src="{{ asset("AdminLTE/dist/img/user2-160x160.jpg") }}" class="img-circle" alt="User Image" />
+                            <img src="{{ session('clienteAvatar')!= '' ?  session("clienteAvatar")  : asset("AdminLTE/dist/img/user2-160x160.jpg") }}" class="img-circle" alt="User Image" />
                             <p>
                               {{session('clienteName')}}
                                 <small>Member since Nov. 2012</small>

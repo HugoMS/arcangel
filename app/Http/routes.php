@@ -29,7 +29,11 @@ Route::group(['middleware' => ['web']], function () {
     //
     Route::get('/', 'LoginController@getIndex');
     Route::post('/', 'LoginController@postIndex');
+    Route::get('social/{provider?}', 'LoginController@getSocialAuth');
+    Route::get('social/callback/{provider?}', 'LoginController@getSocialAuthCallback');
+
     Route::group(['middleware' => ['SessionCliente']], function () {
+
         Route::get('logout', 'LoginController@getLogout');
         Route::get('home', 'HomeController@getIndex');
         Route::get('travels', 'TravelController@getIndex');

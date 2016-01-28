@@ -23,7 +23,7 @@ class LoginController extends Controller
 
     public function getIndex()
     {
-        return view('public.user.login', array());
+        return view('public.cliente.login', array());
     }
 
     public function postIndex(Request $request)
@@ -46,7 +46,8 @@ class LoginController extends Controller
             \Session::put('clienteId', $cliente[0]->id);
             \Session::put('clienteName', $cliente[0]->name);
             \Session::put('clienteEmial', $cliente[0]->email);
-          // dd( \Session::all());
+            \Session::put('clienteAvatar', "");
+            // dd( \Session::all());
             return redirect('home');
         }
         // return view('public.admin', array());
@@ -58,8 +59,23 @@ class LoginController extends Controller
         \Session::forget('clienteId');
         \Session::forget('clienteName');
         \Session::forget('clienteEmial');
-
         return redirect('/');
     }
+
+    public function getSocialAuth($provider = null)
+    {
+        if (!config("services.$provider")) abort('404');
+        return Socialite::driver($provider)->redirect();
+    }
+
+    public function getSocialAuthCallback($provider = null)
+    {
+        if ($user = Socialite::driver($provider)->user()) {
+            dd($user);
+        } else {
+            return '¡¡¡Algo fue mal!!!';
+        }
+    }
+
 
 }
