@@ -37,6 +37,7 @@ class SocialController extends Controller
                 $new_user = new User;
                 $new_user->name = $user->name;
                 $new_user->email = $user->email;
+                $new_user->avatar = $user->avatar;
                 $new_user->save();
                 Auth::login($new_user);
 
