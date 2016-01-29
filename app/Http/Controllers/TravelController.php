@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class TravelController extends Controller
 {
@@ -16,7 +17,7 @@ class TravelController extends Controller
     public function getIndex()
     {
         $data = [];
-        $viajesCliente = ViajeCliente::where('cliente_id', \Session::get('clienteId'))->get();
+        $viajesCliente = ViajeCliente::where('cliente_id', Auth::user()->id)->get();
 
         foreach ($viajesCliente as $viaje) {
             $travel = array($viaje->viaje);
