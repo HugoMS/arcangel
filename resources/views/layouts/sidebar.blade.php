@@ -9,11 +9,15 @@
             <div class="pull-left image">
                 <img src="{{ session('clienteAvatar') != '' ?  session("clienteAvatar")  : asset("AdminLTE/dist/img/user2-160x160.jpg") }}" class="img-circle" alt="User Image" />
             </div>
+            @if (Auth::check())
             <div class="pull-left info">
-                <p>{{   session('clienteName') }}</p>
+                <p>
+                        {{Auth::user()->name}}
+                    </p>
                 <!-- Status -->
                 {{--<a href="#"><i class="fa fa-circle text-success"></i> Online</a>--}}
             </div>
+            @endif
         </div>
 
         <!-- search form (Optional) <ar></ar>
@@ -29,9 +33,9 @@
 
         <!-- Sidebar Menu -->
         <ul class="sidebar-menu">
-            <li class="header">HEADER</li>
+            <li class="header">MENU</li>
             <!-- Optionally, you can add icons to the links -->
-            @if (session('cliente_token'))
+            @if (Auth::check())
             <li class="active"><a href="{{ URL::to('home') }}"><span>Noticias</span></a></li>
             <li><a href="{{ URL::to('travels') }}"><span>Mis Viajes</span></a></li>
             <li class="treeview">

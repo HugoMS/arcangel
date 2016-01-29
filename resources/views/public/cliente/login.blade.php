@@ -15,7 +15,7 @@
                     <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
                 </div>
                 <div class="form-group has-feedback">
-                    <input type="password" name="pass" class="form-control" placeholder="Password">
+                    <input type="password" name="password" class="form-control" placeholder="Password">
                     <span class="glyphicon glyphicon-lock form-control-feedback"></span>
                 </div>
                 <div class="row">
@@ -24,6 +24,20 @@
                     </div><!-- /.col -->
                 </div>
             </form>
+            @if($errors->any())
+                <div>
+                    <ul class="alert alert-danger">
+                        @foreach($errors->all() as $error)
+                            <li>{{$error}}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+            <div class="text-info">
+                @if(Session::has('message'))
+                    {{Session::get('message')}}
+                @endif
+            </div>
 
             <div class="social-auth-links text-center">
                 <p>- OR -</p>
@@ -32,7 +46,7 @@
             </div><!-- /.social-auth-links -->
 
             <a href="#">Olvidó su contraseña</a><br>
-            <a href="register.html" class="text-center">Registrar nuevo usuario</a>
+            <a href="{{ URL::to('auth/register') }}" class="text-center">Registrar nuevo usuario</a>
 
         </div><!-- /.login-box-body -->
     </div>

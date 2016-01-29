@@ -25,22 +25,20 @@
 |
 */
 
-
-    //
-    //Route::get('/', 'LoginController@getIndex');
-    //Route::post('/', 'LoginController@postIndex');
+Route::group(['middleware' => ['web']], function () {
     Route::get('auth/register', 'Auth\AuthController@getRegister');
     Route::post('auth/register', 'Auth\AuthController@postRegister');
     Route::get('auth/login', 'Auth\AuthController@getLogin');
     Route::post('auth/login', 'Auth\AuthController@postLogin');
     Route::get('auth/logout', 'Auth\AuthController@getLogout');
-    Route::get('social/{provider?}', 'LoginController@getSocialAuth');
-    Route::get('social/callback/{provider?}', 'LoginController@getSocialAuthCallback');
+    Route::get('social/{provider?}', 'SocialController@getSocialAuth');
+    Route::get('social/callback/{provider?}', 'SocialController@getSocialAuthCallback');
+    Route::group(['middleware' => ['auth']], function () {
+    Route::get('/', 'HomeController@home');
+    Route::get('home', 'HomeController@home');
+    Route::get('travels', 'TravelController@getIndex');
+    Route::get('travels/{code}', 'TravelController@getTravel');
+});
 
-    Route::group(['middleware' => ['SessionCliente']], function () {
+});
 
-        Route::get('logout', 'LoginController@getLogout');
-        Route::get('home', 'HomeController@getIndex');
-        Route::get('travels', 'TravelController@getIndex');
-        Route::get('travels/{code}', 'TravelController@getTravel');
-    });

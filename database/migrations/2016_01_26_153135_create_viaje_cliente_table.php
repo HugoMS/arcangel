@@ -19,7 +19,8 @@ class CreateViajeClienteTable extends Migration
             $table->foreign('viaje_id')->references('id')->on('viaje');
             $table->integer('cliente_id')->unsigned();
             $table->index('cliente_id');
-            $table->foreign('cliente_id')->references('id')->on('cliente');
+            $table->foreign('cliente_id')->references('id')->on('users');
+            $table->double('monto');
             $table->timestamps();
 
         });

@@ -5,35 +5,31 @@
 
 
         <div class="register-box-body">
-            <div class="text-info">
-                @if(Session::has('message'))
-                    {{Session::get('message')}}
-                @endif
-            </div>
+
 
             <div class="register-logo">
                 <a href="/"><img src="{{ asset('assets/img/logo_Arcangel.png') }}" alt=""></a>
             </div>
             <p class="login-box-msg">Registarse</p>
-            {!! csrf_token() !!}
+            <input type="hidden" name="_token" value="{{ csrf_token() }}">
             <form  method="post" action="{{url('auth/register')}}">
                 <div class="form-group has-feedback">
                     <input type="text" name="name" class="form-control" placeholder="Full name">
                     <span class="glyphicon glyphicon-user form-control-feedback"></span>
                 </div>
-                <div class="text-danger">{{$errors->first('name')}}</div>
+
 
                 <div class="form-group has-feedback">
                     <input type="email" name="email" class="form-control" placeholder="Email">
                     <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
                 </div>
-                <div class="text-danger">{{$errors->first('email')}}</div>
+
 
                 <div class="form-group has-feedback">
                     <input type="password"  name="password" class="form-control" placeholder="Password">
                     <span class="glyphicon glyphicon-lock form-control-feedback"></span>
                 </div>
-                <div class="text-danger">{{$errors->first('password')}}</div>
+
 
                 <div class="form-group has-feedback">
                     <input type="password" name="password_confirmation"  class="form-control" placeholder="Retype password">
@@ -54,7 +50,20 @@
                     <!-- /.col -->
                 </div>
             </form>
-
+            @if($errors->any())
+                <div>
+                    <ul class="alert alert-danger">
+                    @foreach($errors->all() as $error)
+                        <li>{{$error}}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+            <div class="text-info">
+                @if(Session::has('message'))
+                    {{Session::get('message')}}
+                @endif
+            </div>
             <div class="social-auth-links text-center">
                 <p>- OR -</p>
                 <a href="{{ URL::to('social/facebook') }}" class="btn btn-block btn-social btn-facebook btn-flat"><i class="fa fa-facebook"></i> Sign up using

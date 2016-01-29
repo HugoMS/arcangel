@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\User;
 use Validator;
 use Auth;
+use Socialite;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
@@ -22,7 +23,6 @@ class AuthController extends Controller
     | a simple trait to add these behaviors. Why don't you explore it?
     |
     */
-
     use AuthenticatesAndRegistersUsers, ThrottlesLogins;
 
     /**
@@ -39,7 +39,7 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest', ['except' => 'logout']);
+        $this->middleware('guest', ['except' => 'getLogout']);
     }
 
     /**
@@ -108,7 +108,6 @@ class AuthController extends Controller
                 ->withInput();
         }
         else{
-            dd('Ssa');
             $user = new User;
             $data['name'] = $user->name = $request->name;
             $data['email'] = $user->email = $request->email;
@@ -136,11 +135,7 @@ class AuthController extends Controller
         return view('public.cliente.login', array());
     }
 
-
-
-
     public function postLogin(Request $request){
-
         if (Auth::attempt(
             [
                 'email' => $request['email'],
@@ -152,12 +147,10 @@ class AuthController extends Controller
         }
         else{
 
-            dd('sad');
             $rules = [
                 'email' => 'required|email',
                 'password' => 'required',
             ];
-
             $messages = [
                 'email.required' => 'El campo email es requerido',
                 'email.email' => 'El formato de email es incorrecto',
@@ -171,5 +164,12 @@ class AuthController extends Controller
                 ->withInput()
                 ->with('message', 'Error al iniciar sesión');
         }
+    }
+
+    public function getLogout()
+    {
+        Auth::  logout();
+        return redirect('auth/login');
+
     }
 }

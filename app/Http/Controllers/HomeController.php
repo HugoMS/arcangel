@@ -9,10 +9,8 @@ use App\Http\Controllers\Controller;
 
 class HomeController extends Controller
 {
-    public function getIndex(){
 
-
-
+    public function home(){
         $data['tasks'] = [
             [
                 'name' => 'Design New Dashboard',

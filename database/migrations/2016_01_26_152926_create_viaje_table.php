@@ -17,6 +17,8 @@ class CreateViajeTable extends Migration
             $table->string('titulo');
             $table->string('descripcion');
             $table->string('fecha');
+            $table->string('img');
+            $table->integer('cod');
             $table->timestamps();
         });
     }

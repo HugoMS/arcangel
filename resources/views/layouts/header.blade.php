@@ -29,7 +29,8 @@
                                     <a href="#">
                                         <div class="pull-left">
                                             <!-- User Image -->
-                                            <img src="{{ asset("AdminLTE/dist/img/user2-160x160.jpg") }}" class="img-circle" alt="User Image"/>
+                                            <img src="{{ asset("AdminLTE/dist/img/user2-160x160.jpg") }}"
+                                                 class="img-circle" alt="User Image"/>
                                         </div>
                                         <!-- Message title and timestamp -->
                                         <h4>
@@ -90,7 +91,9 @@
                                         <!-- The progress bar -->
                                         <div class="progress xs">
                                             <!-- Change the css width attribute to simulate progress -->
-                                            <div class="progress-bar progress-bar-aqua" style="width: 20%" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100">
+                                            <div class="progress-bar progress-bar-aqua" style="width: 20%"
+                                                 role="progressbar" aria-valuenow="20" aria-valuemin="0"
+                                                 aria-valuemax="100">
                                                 <span class="sr-only">20% Complete</span>
                                             </div>
                                         </div>
@@ -108,16 +111,21 @@
                     <!-- Menu Toggle Button -->
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <!-- The user image in the navbar-->
-                        <img src="{{ session('clienteAvatar')!= '' ?  session("clienteAvatar") :  asset("AdminLTE/dist/img/user2-160x160.jpg") }}" class="user-image" alt="User Image"/>
+                        <img src="{{ session('clienteAvatar')!= '' ?  session("clienteAvatar") :  asset("AdminLTE/dist/img/user2-160x160.jpg") }}"
+                             class="user-image" alt="User Image"/>
                         <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                        <span class="hidden-xs">{{session('clienteName')}}</span>
+                        @if (Auth::check())
+                            <span class="hidden-xs">{{Auth::user()->name}}</span>
+                        @endif
+
                     </a>
                     <ul class="dropdown-menu">
                         <!-- The user image in the menu -->
                         <li class="user-header">
-                            <img src="{{ session('clienteAvatar')!= '' ?  session("clienteAvatar")  : asset("AdminLTE/dist/img/user2-160x160.jpg") }}" class="img-circle" alt="User Image" />
+                            <img src="{{ session('clienteAvatar')!= '' ?  session("clienteAvatar")  : asset("AdminLTE/dist/img/user2-160x160.jpg") }}"
+                                 class="img-circle" alt="User Image"/>
                             <p>
-                              {{session('clienteName')}}
+                                {{session('clienteName')}}
                                 <small>Member since Nov. 2012</small>
                             </p>
                         </li>
@@ -139,7 +147,7 @@
                                 <a href="#" class="btn btn-default btn-flat">Profile</a>
                             </div>
                             <div class="pull-right">
-                                <a href="{{ URL::to('logout') }}" class="btn btn-default btn-flat">Sign out</a>
+                                <a href="{{ URL::to('auth/logout') }}" class="btn btn-default btn-flat">Sign out</a>
                             </div>
                         </li>
                     </ul>
