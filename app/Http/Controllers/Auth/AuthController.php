@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use Validator;
+use Auth;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 
@@ -28,7 +30,7 @@ class AuthController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    protected $redirectTo = '/home';
 
     /**
      * Create a new authentication controller instance.
@@ -68,5 +70,106 @@ class AuthController extends Controller
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
         ]);
+    }
+
+    public function getRegister(){
+        return view('public.cliente.register', array());
+    }
+
+    public function postRegister(Request $request)
+    {
+
+        $rules = [
+            'name' => 'required|min:3|max:16|regex:/^[a-záéíóúàèìòùäëïöüñ\s]+$/i',
+            'email' => 'required|email|max:255|unique:users,email',
+            'password' => 'required|min:6|max:18|confirmed',
+        ];
+
+        $messages = [
+            'name.required' => 'El campo es requerido',
+            'name.min' => 'El mínimo de caracteres permitidos son 3',
+            'name.max' => 'El máximo de caracteres permitidos son 16',
+            'name.regex' => 'Sólo se aceptan letras',
+            'email.required' => 'El campo es requerido',
+            'email.email' => 'El formato de email es incorrecto',
+            'email.max' => 'El máximo de caracteres permitidos son 255',
+            'email.unique' => 'El email ya existe',
+            'password.required' => 'El campo es requerido',
+            'password.min' => 'El mínimo de caracteres permitidos son 6',
+            'password.max' => 'El máximo de caracteres permitidos son 18',
+            'password.confirmed' => 'Los passwords no coinciden',
+        ];
+
+        $validator = Validator::make($request->all(), $rules, $messages);
+
+        if ($validator->fails()){
+            return redirect("auth/register")
+                ->withErrors($validator)
+                ->withInput();
+        }
+        else{
+            dd('Ssa');
+            $user = new User;
+            $data['name'] = $user->name = $request->name;
+            $data['email'] = $user->email = $request->email;
+            $user->password = bcrypt($request->password);
+            $user->remember_token = $request->password;
+            //$data['confirm_token'] = $user->confirm_token = str_random(100);
+            $user->save();
+
+/*
+            Mail::send('mails.register', ['data' => $data], function($mail) use($data){
+                $mail->subject('Confirma tu cuenta');
+                $mail->to($data['email'], $data['name']);
+            });
+*/
+            return redirect("auth/register")
+                ->with("message", "Hemos enviado un enlace de confirmación a su cuenta de correo electrónico");
+        }
+
+    }
+
+
+
+    public function getLogin()
+    {
+        return view('public.cliente.login', array());
+    }
+
+
+
+
+    public function postLogin(Request $request){
+
+        if (Auth::attempt(
+            [
+                'email' => $request['email'],
+                'password' => $request['password'],
+            ]
+        ))
+        {
+            return redirect()->intended($this->redirectPath());
+        }
+        else{
+
+            dd('sad');
+            $rules = [
+                'email' => 'required|email',
+                'password' => 'required',
+            ];
+
+            $messages = [
+                'email.required' => 'El campo email es requerido',
+                'email.email' => 'El formato de email es incorrecto',
+                'password.required' => 'El campo password es requerido',
+            ];
+
+            $validator = Validator::make($request->all(), $rules, $messages);
+
+            return redirect('auth/login')
+                ->withErrors($validator)
+                ->withInput()
+                ->with('message', 'Error al iniciar sesión');
+        }
     }
 }

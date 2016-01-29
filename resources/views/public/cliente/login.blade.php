@@ -8,7 +8,7 @@
                 <a href="/"><img src="{{ asset('assets/img/logo_Arcangel.png') }}" alt=""></a>
             </div><!-- /.login-logo -->
             <p class="login-box-msg">Iniciar Sesión</p>
-            <form method="POST">
+            <form method="POST" action="{{url('auth/login')}}">
             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <div class="form-group has-feedback">
                     <input type="email" class="form-control" name="email" placeholder="Email">

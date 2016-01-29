@@ -13,6 +13,7 @@ use App\Cliente;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Socialite;
+use Illuminate\Support\Facades\Auth;
 
 
 
@@ -57,6 +58,7 @@ class LoginController extends Controller
 
     public function getLogout()
     {
+        Auth::logout();
         \Session::forget('cliente_token');
         \Session::forget('clienteId');
         \Session::forget('clienteName');
@@ -66,6 +68,7 @@ class LoginController extends Controller
 
     public function getSocialAuth($provider = null)
     {
+
         if (!config("services.$provider")) abort('404');
         return Socialite::driver($provider)->redirect();
     }
