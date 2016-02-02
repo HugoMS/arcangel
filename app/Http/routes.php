@@ -37,6 +37,8 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/', 'HomeController@home');
     Route::get('home', 'HomeController@home');
     Route::get('travels', 'TravelController@getIndex');
+    Route::get('travels/pay/{code}', 'TravelController@getTravelPay');
+    Route::post('travels/pay', 'TravelController@postTravelPay');
     Route::get('travels/{code}', 'TravelController@getTravel');
 });
 

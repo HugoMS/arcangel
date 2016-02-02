@@ -3,10 +3,10 @@
 @section('content')
     <div class="row">
         @foreach( $data as $viajes)
-        @foreach( $viajes as $viaje)
 
+        @foreach( $viajes as $viaje)
         <div class="col-md-4">
-    <a class="travel-a" href="{{ URL::to('travels/'.$viaje->cod) }}">
+    <a class="travel-a" href="{{ URL::to('travels/'.$viaje->paquete->cod) }}">
             <!-- Widget: user widget style 1 -->
             <div class="box box-widget widget-user travel ">
                 <!-- Add the bg color to the header using any of the bg-* classes -->
@@ -16,7 +16,7 @@
                     <div class="row">
                         <div class="col-sm-8 border-right">
                             <div class="description-block">
-                                <h5 class="description-header">{{$viaje->titulo}}</h5>
+                                <h5 class="description-header">{{$viaje->paquete->titulo}}</h5>
                             </div>
                             <!-- /.description-block -->
                         </div>
@@ -24,7 +24,7 @@
                         <!-- /.col -->
                         <div class="col-sm-4">
                             <div class="description-block">
-                                <h5 class="description-header">{{$viaje->fecha}}</h5>
+                                <h5 class="description-header">{{$viaje->paquete->fecha}}</h5>
                             </div>
                             <!-- /.description-block -->
                         </div>

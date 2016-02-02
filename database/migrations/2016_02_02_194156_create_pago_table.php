@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateViajeTable extends Migration
+class CreatePagoTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,13 +12,13 @@ class CreateViajeTable extends Migration
      */
     public function up()
     {
-        Schema::create('viaje', function (Blueprint $table) {
+        Schema::create('pago', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('titulo');
-            $table->string('descripcion');
-            $table->string('fecha');
-            $table->string('img');
-            $table->integer('cod');
+            $table->integer('viaje_id')->unsigned();
+            $table->index('viaje_id');
+            $table->foreign('viaje_id')->references('id')->on('viaje');
+            $table->float('monto');
+            $table->date('fecha');
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ class CreateViajeTable extends Migration
      */
     public function down()
     {
-        Schema::drop('viaje');
+        Schema::drop('pago');
     }
 }

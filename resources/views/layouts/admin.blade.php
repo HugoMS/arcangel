@@ -16,6 +16,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link href="{{ asset("AdminLTE/dist/css/ionicons.min.css") }}" rel="stylesheet" type="text/css" />
     <!-- Theme style -->
     <link href="{{ asset("AdminLTE/dist/css/AdminLTE.min.css")}}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset("AdminLTE/plugins/datepicker/datepicker3.css")}}" rel="stylesheet" type="text/css" />
     <!-- AdminLTE Skins. We have chosen the skin-blue for this starter
           page. However, you can choose any other skin. Make sure you
           apply the skin class to the body tag so the changes take effect.
@@ -78,6 +79,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <script src="{{ asset ("AdminLTE/bootstrap/js/bootstrap.min.js") }}" type="text/javascript"></script>
 <!-- AdminLTE App -->
 <script src="{{ asset ("AdminLTE/dist/js/app.min.js") }}" type="text/javascript"></script>
+<<!-- script App -->
+<script src="{{ asset ("assets/js/scripts.js") }}" type="text/javascript"></script>
+<!-- Datepicker -->
+<script src="{{ asset ("AdminLTE/plugins/datepicker/bootstrap-datepicker.js") }}" type="text/javascript"></script>
 
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
       Both of these plugins are recommended to enhance the

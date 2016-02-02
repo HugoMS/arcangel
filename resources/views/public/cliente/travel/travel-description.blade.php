@@ -93,6 +93,7 @@
         <div class="box-header">
             <i class="fa fa-paperclip"></i>
             <h3 class="box-title">Pagos Realizados</h3>
+            <a href="{{ URL::to('travels/pay/'.$data->cod) }}" style="float: right ; width: 100px" class="btn btn-block btn-success">Pagar</a>
         </div>
         <!-- /.box-header -->
         <div class="box-body no-padding">

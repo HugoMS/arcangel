@@ -11,8 +11,9 @@
                 <a href="/"><img src="{{ asset('assets/img/logo_Arcangel.png') }}" alt=""></a>
             </div>
             <p class="login-box-msg">Registarse</p>
-            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
             <form  method="post" action="{{url('auth/register')}}">
+                <input type="hidden" name="_token" value="{{ csrf_token() }}">
                 <div class="form-group has-feedback">
                     <input type="text" name="name" class="form-control" placeholder="Full name">
                     <span class="glyphicon glyphicon-user form-control-feedback"></span>
