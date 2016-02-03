@@ -7,7 +7,7 @@
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel">
             <div class="pull-left image">
-                <img src="{{ session('clienteAvatar') != '' ?  session("clienteAvatar")  : asset("AdminLTE/dist/img/user2-160x160.jpg") }}" class="img-circle" alt="User Image" />
+                <img src="{{Auth::user()->avatar != '' ?  Auth::user()->avatar : asset("AdminLTE/dist/img/user2-160x160.jpg") }}" class="img-circle" alt="User Image" />
             </div>
             @if (Auth::check())
             <div class="pull-left info">
@@ -35,14 +35,14 @@
         <ul class="sidebar-menu">
             <li class="header">MENU</li>
             <!-- Optionally, you can add icons to the links -->
-            @if (Auth::check())
+            @can('menu_viajero')
             <li class="active"><a href="{{ URL::to('home') }}"><span>Noticias</span></a></li>
             <li><a href="{{ URL::to('travels') }}"><span>Mis Viajes</span></a></li>
             <li class="treeview">
                 <a href="#"><span>Viajes Arcangel</span> </a>
 
             </li>
-             @endif
+             @endcan
         </ul><!-- /.sidebar-menu -->
     </section>
     <!-- /.sidebar -->

@@ -113,9 +113,9 @@ class AuthController extends Controller
             $data['email'] = $user->email = $request->email;
             $user->password = bcrypt($request->password);
             $user->remember_token = $request->password;
-            //$data['confirm_token'] = $user->confirm_token = str_random(100);
             $user->save();
-
+            $user->assignRole('viajero');
+            //$data['confirm_token'] = $user->confirm_token = str_random(100);
 /*
             Mail::send('mails.register', ['data' => $data], function($mail) use($data){
                 $mail->subject('Confirma tu cuenta');
